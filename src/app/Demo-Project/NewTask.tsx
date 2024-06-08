@@ -8,7 +8,6 @@ export default function NewTask({
   onAddTask: (task: string) => void;
   onDeleteTask: (taskID: string) => void;
 }) {
-  console.log(onAddTask, onDeleteTask)
   const [task, setTask] = useState<string>("");
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement>

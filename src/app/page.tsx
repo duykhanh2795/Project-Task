@@ -85,7 +85,7 @@ export default function Page() {
       };
     });
   }
-  // console.log(Project.ID);
+  console.log(Project.ID);
   function handleDeleteProject() {
     setProject((prevProjectState: Projectype) => {
       return {
