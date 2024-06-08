@@ -2,94 +2,138 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import "./globals.css";
+import { twMerge, twJoin } from "tailwind-merge";
 import { propagateServerField } from "next/dist/server/lib/render-server";
+import SideBar from "./Demo-Project/SideBar";
+import NewProject from "./Demo-Project/NewProject";
+import NoProjectSelected from "./Demo-Project/NoProjectSelected";
+import SelectedProject from "./Demo-Project/SelectedProject";
+import { v4 as uuidv4 } from "uuid";
 
-// function Next() {
-//   const [click, setClick] = useState<number>(0);
-//   const [hover, setHover] = useState<boolean>(false);
-//   const handleClick = () => {
-//     setClick((prevClick) => prevClick + 1);
-//   };
-//   const resetClick = () => {
-//     setClick(0);
-//   };
-//   return (
-//     <>
-//       <ClickButton
-//         click={click}
-//         handleClick={handleClick}
-//         handleHover={() => setHover((Hover) => !Hover)}
-//         hover={hover}
-//         resetClick={resetClick}
-//       ></ClickButton>
-//     </>
-//   );
-// }
-// function ClickButton({
-//   click,
-//   handleClick,
-//   hover,
-//   handleHover,
-//   resetClick,
-// }: {
-//   click: number;
-//   handleClick: () => void;
-//   hover: boolean;
-//   handleHover: () => void;
-//   resetClick: () => void;
-// }) {
-//   return (
-//     <div
-//       className={`flex flex-col gap-[20px] bg-[green] items-center h-[500px] justify-center ${
-//         hover ? "bg-[blue]" : "bg-rose-900"
-//       }`}
-//       onMouseEnter={handleHover}
-//       onMouseLeave={handleHover}
-//     >
-//       <button
-//         className="bg-white text-black h-32 w-32 rounded hover:bg-black hover:text-white"
-//         onClick={handleClick}
-//       >
-//         Click {click} {hover ? "hovering" : "not hovering"}
-//       </button>
-//       <button
-//         className="bg-white rounded text-black hover:bg-black hover:text-white"
-//         onClick={resetClick}
-//       >
-//         Reset
-//       </button>
-//     </div>
-//   );
-// }
-export default function ChangeColor() {
-  const [color, setColor] = useState<string>("");
-  const getColor = (inputColor: string) => {
-    setColor(inputColor);
-  };
-  console.log(color);
-  return (
-    <div className="flex npm flex-col items-center justify-center h-screen gap-10">
-      <div
-        className={`h-[300px] w-[300px] border-white border-2 bg-[${color}]`}
-      ></div>
-      <UserColor getColor={getColor}></UserColor>
-    </div>
+type Projectype = {
+  ID: string | null | undefined | number;
+  id?: any;
+  projects: Projectype[];
+  tasks: any[];
+};
+export default function Page() {
+  const [Project, setProject] = useState<Projectype>({
+    ID: undefined,
+    projects: [],
+    tasks: [],
+  });
+  function handleAddTask(task: string) {
+    setProject((prevProjectState: Projectype) => {
+      const NewTask = {
+        content: task,
+        taskID: uuidv4(),
+        projectID: Project.ID,
+      };
+      return {
+        ...prevProjectState,
+        tasks: [...prevProjectState.tasks, NewTask],
+      };
+    });
+  }
+  function handleDeleteTask(taskID: string) {
+    setProject((prevProjectState: Projectype) => {
+      return {
+        ...prevProjectState,
+        tasks: prevProjectState.tasks.filter(
+          (task) => task.taskID !== taskID
+        ),
+      };
+    });
+  }
+  function handleStartAddProject(): void {
+    setProject((prevProjectState: Projectype) => {
+      return {
+        ...prevProjectState,
+        ID: null,
+      };
+    });
+  }
+  function handleAddProject(projectData: any): void {
+    setProject((prevProjectState: Projectype) => {
+      const newProject = {
+        ...projectData,
+        id: uuidv4(),
+      };
+      return {
+        ...prevProjectState,
+        ID: undefined,
+        projects: [
+          ...prevProjectState.projects,
+          newProject,
+        ],
+      };
+    });
+  }
+  function handleCancelAddProject() {
+    setProject((prevProjectState: Projectype) => {
+      return {
+        ...prevProjectState,
+        ID: undefined,
+      };
+    });
+  }
+  function handleSelectedProject(id: any) {
+    setProject((prevProjectState: Projectype) => {
+      return {
+        ...prevProjectState,
+        ID: id,
+      };
+    });
+  }
+  function handleDeleteProject() {
+    setProject((prevProjectState: Projectype) => {
+      return {
+        ...prevProjectState,
+        ID: undefined,
+        projects: prevProjectState.projects.filter(
+          (project) => project.id !== Project.ID
+        ),
+      };
+    });
+  }
+  const selectedProject = Project.projects.find(
+    (project) => project.id === Project.ID
   );
-}
-function UserColor({ getColor }: { getColor: (inputColor: string) => void }) {
-  const [activeColor, setActivecolor] = useState<string>("");
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    console.log(e.target.value);
-    setActivecolor(value);
-    getColor(value);
-  };
+  let content = (
+    <SelectedProject
+      project={selectedProject}
+      onDelete={handleDeleteProject}
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
+      tasks={Project.tasks}
+    ></SelectedProject>
+  );
+  if (Project.ID === null) {
+    content = (
+      <NewProject
+        onAdd={handleAddProject}
+        onCancel={handleCancelAddProject}
+      />
+    );
+  } else if (Project.ID === undefined) {
+    content = (
+      <NoProjectSelected
+        onAddProject={handleStartAddProject}
+      ></NoProjectSelected>
+    );
+  }
   return (
-    <input
-      className="rounded focus:outline-none"
-      type="text"
-      onChange={handleChange}
-      value={activeColor}
-    />
+    <>
+      <div className="h-5 bg-[#5e5e5e]"></div>
+      <main className="h-[723px] flex">
+        <SideBar
+          onAddProject={handleStartAddProject}
+          projects={Project.projects}
+          onSelectedProject={handleSelectedProject}
+          selectedProjectID={Project.ID}
+        ></SideBar>
+        {content}
+      </main>
+    </>
   );
 }
