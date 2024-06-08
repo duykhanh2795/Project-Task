@@ -1,10 +1,12 @@
 import NewTask from "./NewTask";
 export default function Task({
   tasks,
+  selectedProjectID,
   onAddTask,
   onDeleteTask,
 }: {
   tasks: any[];
+  selectedProjectID: any;
   onAddTask: (task: string) => void;
   onDeleteTask: (taskID: string) => void;
 }) {
@@ -15,36 +17,37 @@ export default function Task({
         onAddTask={onAddTask}
         onDeleteTask={onDeleteTask}
       ></NewTask>
-      {tasks.length === 0 ? (
+      {tasks.length === 0 ||
+      !tasks.some(
+        (task) => task.projectID === selectedProjectID
+      ) ? (
         <p className="text-stone-800 mb-4">
           This project does not have any tasks yet
         </p>
       ) : (
         <ul className="p-4 mt-8 rounded-md bg-stone-100">
           {tasks.map((task) => {
-            return (
-              <li
-                key={task.taskID}
-                className="flex justify-between my-4"
-              >
-                <span>{task.content}</span>
-                <button
-                  onClick={() => onDeleteTask(task.taskID)}
-                  className="text-stone-700 hover:text-red-500 hover:font-bold"
+            if (task.projectID === selectedProjectID) {
+              return (
+                <li
+                  key={task.taskID}
+                  className="flex justify-between my-4"
                 >
-                  Clear
-                </button>
-              </li>
-            );
+                  <span>{task.content}</span>
+                  <button
+                    onClick={() =>
+                      onDeleteTask(task.taskID)
+                    }
+                    className="text-stone-700 hover:text-red-500 hover:font-bold"
+                  >
+                    Clear
+                  </button>
+                </li>
+              );
+            }
           })}
         </ul>
       )}
-      {/* <p className="text-stone-800 mb-4">
-        This project does not have any tasks yet
-      </p> */}
-      {/* <ul>{tasks.map((task) => {
-        return ()
-      })}</ul> */}
     </section>
   );
 }

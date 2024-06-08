@@ -25,7 +25,6 @@ export default function NewTask({
         onChange={handleChange}
         value={task}
       />
-
       <Button onClick={handleClick} disabled={task === ""}>
         Add
       </Button>

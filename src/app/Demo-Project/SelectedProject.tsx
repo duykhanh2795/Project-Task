@@ -3,12 +3,16 @@ import Task from "./Task";
 export default function SelectedProject({
   project,
   tasks,
+  ProjectLength,
+  selectedProjectID,
   onDelete,
   onAddTask,
   onDeleteTask,
 }: {
   project: any;
   tasks: any[];
+  ProjectLength: number;
+  selectedProjectID: any;
   onDelete: () => void;
   onAddTask: (task: string) => void;
   onDeleteTask: (taskID: string) => void;
@@ -17,7 +21,7 @@ export default function SelectedProject({
 
   useEffect(() => {
     setCurrentTime(new Date().toLocaleString());
-  }, []);
+  }, [ProjectLength]);
   const formattedDate = new Date(
     project.duedate
   ).toLocaleDateString("en-US", {
@@ -39,7 +43,7 @@ export default function SelectedProject({
           >
             Delete
           </button>
-        </div>
+        </div>``
         <p className="mb-4 text-stone-400">
           Due Date: {formattedDate}
         </p>
@@ -51,6 +55,7 @@ export default function SelectedProject({
         onAddTask={onAddTask}
         onDeleteTask={onDeleteTask}
         tasks={tasks}
+        selectedProjectID={selectedProjectID}
       ></Task>
       <span className="text-[#858687] font-bold absolute bottom-8 right-8">
         Create at: {currentTime}

@@ -85,6 +85,7 @@ export default function Page() {
       };
     });
   }
+  // console.log(Project.ID);
   function handleDeleteProject() {
     setProject((prevProjectState: Projectype) => {
       return {
@@ -106,6 +107,8 @@ export default function Page() {
       onAddTask={handleAddTask}
       onDeleteTask={handleDeleteTask}
       tasks={Project.tasks}
+      ProjectLength={Project.projects.length}
+      selectedProjectID={Project.ID}
     ></SelectedProject>
   );
   if (Project.ID === null) {
