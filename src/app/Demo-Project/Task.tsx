@@ -10,7 +10,6 @@ export default function Task({
   onAddTask: (task: string) => void;
   onDeleteTask: (taskID: string) => void;
 }) {
-  console.log(tasks);
   return (
     <section className="text-black">
       <h2 className="text-2xl font-bold mb-4">Tasks</h2>

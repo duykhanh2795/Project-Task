@@ -17,11 +17,6 @@ export default function SelectedProject({
   onAddTask: (task: string) => void;
   onDeleteTask: (taskID: string) => void;
 }) {
-  // const [currentTime, setCurrentTime] = useState("");
-
-  // useEffect(() => {
-  //   setCurrentTime(new Date().toLocaleString());
-  // }, [ProjectLength]);
   const formattedDate = new Date(
     project.duedate
   ).toLocaleDateString("en-US", {
@@ -29,7 +24,6 @@ export default function SelectedProject({
     month: "long",
     year: "numeric",
   });
-  // const currentTime = new Date().toLocaleString()
   return (
     <div className="w-[35rem] mt-16">
       <header className="pb-4 mb-4 border-b-2 border-stone-300">
