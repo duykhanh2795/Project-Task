@@ -3,11 +3,13 @@ import { useState } from "react";
 
 export default function SideBar({
   onAddProject,
+  tasks,
   projects,
   onSelectedProject,
   selectedProjectID,
 }: {
   onAddProject: () => void;
+  tasks: any[];
   projects: any;
   onSelectedProject: (id: any) => void;
   selectedProjectID?: null | number | undefined | string;
@@ -36,7 +38,7 @@ export default function SideBar({
             return (
               <li
                 key={project.id}
-                className="my-4 hover:break-all"
+                className="peer my-4 hover:break-all"
               >
                 <button
                   onClick={() => {
@@ -44,9 +46,8 @@ export default function SideBar({
                     setIsActive(true)
                   }
                   }
-                  // onBlur={() => setIsActive(false)}
-                  className={`${buttonStyle} overflow-ellipsis overflow-hidden ${
-                    isActive ? "break-all" : ""
+                  className={`${buttonStyle} ${
+                    project.id === selectedProjectID ? "break-all" : "overflow-ellipsis overflow-hidden"
                   }`}
                 >
                   {project.title}

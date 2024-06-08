@@ -131,6 +131,7 @@ export default function Page() {
       <main className="h-[723px] flex">
         <SideBar
           onAddProject={handleStartAddProject}
+          tasks={Project.tasks}
           projects={Project.projects}
           onSelectedProject={handleSelectedProject}
           selectedProjectID={Project.ID}
