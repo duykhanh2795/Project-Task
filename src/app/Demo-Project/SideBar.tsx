@@ -24,11 +24,11 @@ export default function SideBar({
         <ul className="mt-8">
           {projects.map((project: any) => {
             let buttonStyle: string =
-              "w-full text-left px-2 py-1 rounded-md my-1 bg-zinc-800 hover:text-stone-200 hover:bg-stone-700";
+              "w-full text-left px-2 py-1 rounded-md my-1 hover:text-stone-200 hover:bg-stone-700";
             if (project.id === selectedProjectID) {
               buttonStyle += " bg-stone-700 text-[white]";
             } else {
-              buttonStyle += " text-stone-400";
+              buttonStyle += " bg-zinc-800 text-stone-400";
             }
             return (
               <li key={project.id} className="my-4">
