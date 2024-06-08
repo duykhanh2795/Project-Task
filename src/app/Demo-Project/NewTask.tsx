@@ -1,3 +1,4 @@
+import { on } from "events";
 import Button from "./Button";
 import { useState } from "react";
 export default function NewTask({
@@ -7,6 +8,7 @@ export default function NewTask({
   onAddTask: (task: string) => void;
   onDeleteTask: (taskID: string) => void;
 }) {
+  console.log(onAddTask, onDeleteTask)
   const [task, setTask] = useState<string>("");
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement>
