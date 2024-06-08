@@ -31,12 +31,12 @@ export default function SideBar({
               buttonStyle += " bg-zinc-800 text-stone-400";
             }
             return (
-              <li key={project.id} className="my-4">
+              <li key={project.id} className="my-4 line-clamp-2 hover:break-all">
                 <button
                   onClick={() =>
                     onSelectedProject(project.id)
                   }
-                  className={buttonStyle}
+                  className={buttonStyle + " focus:break-all"}
                 >
                   {project.title}
                 </button>
