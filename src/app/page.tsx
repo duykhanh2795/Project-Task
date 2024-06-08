@@ -58,6 +58,7 @@ export default function Page() {
       const newProject = {
         ...projectData,
         id: uuidv4(),
+        currentTime: new Date().toLocaleString(),
       };
       return {
         ...prevProjectState,

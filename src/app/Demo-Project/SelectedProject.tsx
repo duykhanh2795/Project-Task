@@ -17,11 +17,11 @@ export default function SelectedProject({
   onAddTask: (task: string) => void;
   onDeleteTask: (taskID: string) => void;
 }) {
-  const [currentTime, setCurrentTime] = useState("");
+  // const [currentTime, setCurrentTime] = useState("");
 
-  useEffect(() => {
-    setCurrentTime(new Date().toLocaleString());
-  }, [ProjectLength]);
+  // useEffect(() => {
+  //   setCurrentTime(new Date().toLocaleString());
+  // }, [ProjectLength]);
   const formattedDate = new Date(
     project.duedate
   ).toLocaleDateString("en-US", {
@@ -58,7 +58,7 @@ export default function SelectedProject({
         selectedProjectID={selectedProjectID}
       ></Task>
       <span className="text-[#858687] font-bold absolute bottom-8 right-8">
-        Create at: {currentTime}
+        Create at: {project.currentTime}
       </span>
     </div>
   );
