@@ -1,4 +1,6 @@
 import Button from "./Button";
+import { useState } from "react";
+
 export default function SideBar({
   onAddProject,
   projects,
@@ -10,6 +12,7 @@ export default function SideBar({
   onSelectedProject: (id: any) => void;
   selectedProjectID?: null | number | undefined | string;
 }) {
+  const [isActive, setIsActive] = useState(false);
   return (
     <>
       <aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl mr-9">
@@ -24,19 +27,27 @@ export default function SideBar({
         <ul className="mt-8">
           {projects.map((project: any) => {
             let buttonStyle: string =
-              "w-full text-left px-2 py-1 rounded-md my-1 hover:text-stone-200 hover:bg-stone-700";
+              "w-full text-left px-2 py-1 rounded-md my-1 hover:text-[white] hover:bg-stone-700";
             if (project.id === selectedProjectID) {
               buttonStyle += " bg-stone-700 text-[white]";
             } else {
               buttonStyle += " bg-zinc-800 text-stone-400";
             }
             return (
-              <li key={project.id} className="my-4 line-clamp-2 hover:break-all">
+              <li
+                key={project.id}
+                className="my-4 hover:break-all"
+              >
                 <button
-                  onClick={() =>
+                  onClick={() => {
                     onSelectedProject(project.id)
+                    setIsActive(true)
                   }
-                  className={buttonStyle + " focus:break-all"}
+                  }
+                  // onBlur={() => setIsActive(false)}
+                  className={`${buttonStyle} overflow-ellipsis overflow-hidden ${
+                    isActive ? "break-all" : ""
+                  }`}
                 >
                   {project.title}
                 </button>

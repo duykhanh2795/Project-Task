@@ -35,3 +35,19 @@ body {
     text-wrap: balance;
   }
 }
+/* .buttonStyle {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  margin-top: 16px;
+  margin-bottom: 16px;
+} */
+@layer utilities {
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+}
