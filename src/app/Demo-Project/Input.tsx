@@ -38,7 +38,7 @@ const Input = forwardRef(function Input(
           ref={ref}
           className={classes}
           type={type}
-          //{...props}
+          {...props}
         />
       )}
     </p>
