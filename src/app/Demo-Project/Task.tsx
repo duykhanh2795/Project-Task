@@ -31,9 +31,11 @@ export default function Task({
               return (
                 <li
                   key={task.taskID}
-                  className="flex justify-between my-4"
+                  className="flex justify-between items-start my-4"
                 >
-                  <span>{task.content}</span>
+                  <span className="break-all w-[450px]">
+                    {task.content}
+                  </span>
                   <button
                     onClick={() =>
                       onDeleteTask(task.taskID)

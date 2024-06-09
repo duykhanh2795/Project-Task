@@ -42,12 +42,13 @@ export default function SideBar({
               >
                 <button
                   onClick={() => {
-                    onSelectedProject(project.id)
-                    setIsActive(true)
-                  }
-                  }
+                    onSelectedProject(project.id);
+                    setIsActive(true);
+                  }}
                   className={`${buttonStyle} ${
-                    project.id === selectedProjectID ? "break-all" : "overflow-ellipsis overflow-hidden"
+                    project.id === selectedProjectID
+                      ? "break-all"
+                      : "overflow-ellipsis overflow-hidden"
                   }`}
                 >
                   {project.title}
