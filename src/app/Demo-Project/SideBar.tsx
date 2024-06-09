@@ -14,7 +14,6 @@ export default function SideBar({
   onSelectedProject: (id: any) => void;
   selectedProjectID?: null | number | undefined | string;
 }) {
-  const [isActive, setIsActive] = useState(false);
   return (
     <>
       <aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl mr-9">
@@ -43,7 +42,6 @@ export default function SideBar({
                 <button
                   onClick={() => {
                     onSelectedProject(project.id);
-                    setIsActive(true);
                   }}
                   className={`${buttonStyle} ${
                     project.id === selectedProjectID
