@@ -45,9 +45,16 @@ export default function SideBar({
                   }}
                   className={`${buttonStyle} ${
                     project.id === selectedProjectID
-                      ? "break-keep"
-                      : "text-ellipsis overflow-hidden whitespace-nowrap"
-                  } hover:whitespace-normal hover:break-keep`}
+                      //? "break-keep"
+                      //: "text-ellipsis overflow-hidden whitespace-nowrap"
+                  //} hover:whitespace-normal hover:break-keep`}
+                    ? "break-alL"
+                      : `overflow-ellipsis overflow-hidden ${
+                          project.title.includes(" ")
+                            ? "whitespace-nowrap hover:whitespace-normal"
+                            : ""
+                        }`
+                  }`}
                 >
                   {project.title}
                 </button>
