@@ -50,4 +50,7 @@ body {
     -webkit-box-orient: vertical;  
     overflow: hidden;
   }
+    .break-all {
+    word-break: break-all;
+  }
 }
