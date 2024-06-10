@@ -48,7 +48,7 @@ export default function SideBar({
                       //? "break-keep"
                       //: "text-ellipsis overflow-hidden whitespace-nowrap"
                   //} hover:whitespace-normal hover:break-keep`}
-                    ? "break-alL"
+                    ? "break-keep"
                       : `overflow-ellipsis overflow-hidden ${
                           project.title.includes(" ")
                             ? "whitespace-nowrap hover:whitespace-normal"
