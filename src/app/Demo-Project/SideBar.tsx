@@ -47,7 +47,7 @@ export default function SideBar({
                     project.id === selectedProjectID
                       ? "break-all"
                       : "text-ellipsis overflow-hidden whitespace-nowrap"
-                  } hover:whitespace-normal`}
+                  } hover:whitespace-normal hover:break-words`}
                 >
                   {project.title}
                 </button>
