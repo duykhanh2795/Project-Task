@@ -51,7 +51,7 @@ export default function SideBar({
                     ? "break-keep"
                       : `overflow-ellipsis overflow-hidden ${
                           project.title.includes(" ")
-                            ? "whitespace-nowrap hover:whitespace-normal"
+                            ? "whitespace-nowrap hover:whitespace-normal hover:break-keep"
                             : ""
                         }`
                   }`}
