@@ -46,7 +46,7 @@ export default function SideBar({
                   className={`${buttonStyle} ${
                     project.id === selectedProjectID
                       ? "break-all"
-                      : "overflow-ellipsis overflow-hidden"
+                      : "truncate overflow-hidden"
                   }`}
                 >
                   {project.title}
