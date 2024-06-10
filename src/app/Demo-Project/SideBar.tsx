@@ -47,7 +47,7 @@ export default function SideBar({
                     project.id === selectedProjectID
                       ? "break-all"
                       : "truncate overflow-hidden"
-                  }`}
+                  } hover:break-all`}
                 >
                   {project.title}
                 </button>
