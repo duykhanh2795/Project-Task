@@ -45,7 +45,7 @@ export default function SideBar({
                   }}
                   className={`${buttonStyle} ${
                     project.id === selectedProjectID
-                      ? "break-all"
+                      ? "break-keep"
                       : "text-ellipsis overflow-hidden whitespace-nowrap"
                   } hover:whitespace-normal hover:break-keep`}
                 >
