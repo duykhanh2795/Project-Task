@@ -57,6 +57,11 @@ const config: Config = {
       },
     },
   },
+  variants: {
+    extend: {
+      wordBreak: ['hover'], // Add this line
+    },
+  },
   plugins: [],
 };
 export default config;
