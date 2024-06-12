@@ -38,7 +38,6 @@ export default function SelectedProject({
             Delete
           </button>
         </div>
-        ``
         <p className="mb-4 text-stone-400">
           Due Date: {formattedDate}
         </p>
